@@ -1,8 +1,12 @@
-import express from 'express'
+import { app } from './app'
+import { connectDB } from './database'
+import { PORT } from './config'
 
-const APP = express()
-const PORT = 3000
+async function main() {
+  await connectDB()
+  app.listen(PORT, () => {
+    console.log(`Server on port ${PORT}`);
+  })
+}
 
-APP.listen(PORT, () => {
-  console.log(`Server on port ${PORT}`);
-})
+main()
